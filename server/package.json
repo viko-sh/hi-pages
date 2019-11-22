@@ -1,0 +1,24 @@
+{
+  "name": "hipages-tech-test-full-stack-engineer-server",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "tsc",
+    "build-dev": "tsc --w",
+    "clean": "rm -rf dist",
+    "start": "npm run clean && npm run build && node -r source-map-support/register dist/index.js",
+    "start-dev-inspect": "tsc && nodemon --inspect ./dist/index.js",
+    "start-dev": "nodemon ./dist/index.js"
+  },
+  "dependencies": {
+    "express": "^4.16.4",
+    "nodemon": "^2.0.1"
+  },
+  "devDependencies": {
+    "@types/express": "^4.16.0",
+    "ts-node": "^7.0.1",
+    "tslint": "^5.12.0",
+    "tslint-config-shopify": "^3.0.2",
+    "typescript": "^3.2.2"
+  }
+}
