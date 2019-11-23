@@ -22,6 +22,6 @@ export default (sequelize, DataTypes) => {
       timestamps: false
     }
   );
-  //   Job.associate = (models: ) => {};
+
   return Category;
 };

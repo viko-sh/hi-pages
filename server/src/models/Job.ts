@@ -42,7 +42,15 @@ export default (sequelize, DataTypes) => {
     }
   );
   Job.associate = models => {
-    Job.hasOne(models.category, { as: 'category', foreignKey: 'id' });
+    Job.belongsTo(models.category, {
+      as: 'category'
+      foreignKey: 'category_id',
+    });
+
+    Job.belongsTo(models.suburb, {
+      as: 'suburb'
+      foreignKey: 'suburb_id',
+    });
   };
   return Job;
 };

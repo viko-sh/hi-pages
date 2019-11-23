@@ -1,6 +1,6 @@
 export default (sequelize, DataTypes) => {
-  const Category = sequelize.define(
-    'suburbs',
+  const Suburb = sequelize.define(
+    'suburb',
     {
       id: {
         type: DataTypes.INTEGER(11),
@@ -20,6 +20,5 @@ export default (sequelize, DataTypes) => {
       underscored: true
     }
   );
-  //   Job.associate = (models: ) => {};
-  return Category;
+  return Suburb;
 };

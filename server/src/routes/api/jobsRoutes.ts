@@ -1,12 +1,18 @@
 import * as express from 'express';
 import { Request, Response } from 'express';
 import JobsService from '../../service/jobsService';
+import { JobFactory } from '../../factory/jobFactory';
 import { JobsStatus } from '../../constants';
 const router = express.Router();
 
 router.get('/invited', async (req: Request, res: Response) => {
   try {
-    const result = await JobsService.getInvitedJobs();
+    const jobs = await JobsService.getInvitedJobs();
+
+    const result = jobs.map(job =>
+      new JobFactory(job.get({ plain: true })).toResult()
+    );
+
     res.json(result);
   } catch (error) {
     res.status(500).send(error.message);
@@ -15,7 +21,12 @@ router.get('/invited', async (req: Request, res: Response) => {
 
 router.get('/accepted', async (req: Request, res: Response) => {
   try {
-    const result = await JobsService.getAcceptedJobs();
+    const jobs = await JobsService.getAcceptedJobs();
+
+    const result = jobs.map(job =>
+      new JobFactory(job.get({ plain: true })).toResult()
+    );
+
     res.json(result);
   } catch (error) {
     res.status(500).send(error.message);
