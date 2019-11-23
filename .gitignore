@@ -1,5 +1,6 @@
 # dependencies
 /server/node_modules
+/server/dist
 /ui/node_modules
 
 /.pnp
