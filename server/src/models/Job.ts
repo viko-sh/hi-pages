@@ -43,13 +43,13 @@ export default (sequelize, DataTypes) => {
   );
   Job.associate = models => {
     Job.belongsTo(models.category, {
-      as: 'category'
-      foreignKey: 'category_id',
+      as: 'category',
+      foreignKey: 'category_id'
     });
 
     Job.belongsTo(models.suburb, {
-      as: 'suburb'
-      foreignKey: 'suburb_id',
+      as: 'suburb',
+      foreignKey: 'suburb_id'
     });
   };
   return Job;

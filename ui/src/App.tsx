@@ -1,26 +1,20 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Route } from 'react-router-dom';
+import { Accepted } from './Leads/Accepted';
+import { Invited } from './Leads/Invited';
+import { Header } from './Header';
+import { Container } from './shared/styles';
 
 const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Container>
+        <Header />
+        <Route path="/" exact={true} component={Invited} />
+        <Route path="/accepted" component={Accepted} />
+      </Container>
+    </BrowserRouter>
   );
-}
+};
 
 export default App;
