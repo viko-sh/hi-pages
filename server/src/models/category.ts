@@ -18,7 +18,8 @@ export default (sequelize, DataTypes) => {
       }
     },
     {
-      underscored: true
+      underscored: true,
+      timestamps: false
     }
   );
   //   Job.associate = (models: ) => {};

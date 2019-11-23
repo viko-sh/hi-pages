@@ -41,8 +41,8 @@ export default (sequelize, DataTypes) => {
       underscored: true
     }
   );
-  job.associate = (models) => {
-    job. 
+  Job.associate = models => {
+    Job.hasOne(models.category, { as: 'category', foreignKey: 'id' });
   };
   return Job;
 };
