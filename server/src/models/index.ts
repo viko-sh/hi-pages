@@ -1,8 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
-// tslint:disable-next-line:no-var-requires
 require('dotenv').config();
-// tslint:disable-next-line:no-var-requires
 const Sequelize = require('sequelize');
 
 const basename = path.basename(module.filename);
@@ -46,4 +44,5 @@ Object.keys(db).forEach(modelName => {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
-module.exports = db;
+// module.exports = db;
+export default db;
