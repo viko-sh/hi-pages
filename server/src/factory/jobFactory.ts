@@ -91,7 +91,6 @@ export class JobFactory implements Factory {
   toResult() {
     return {
       id: this.id,
-      status: this.status,
       contactName: this.contactName,
       contactEmail: this.contactEmail,
       contactPhone: this.contactPhone,
