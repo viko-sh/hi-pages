@@ -4,7 +4,6 @@ import { Link, withRouter } from 'react-router-dom';
 
 class HeaderInner extends Component<any> {
   render() {
-    console.log(this.props);
     const {
       location: { pathname }
     } = this.props;

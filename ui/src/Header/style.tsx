@@ -1,10 +1,8 @@
 import styled from 'styled-components';
-
+import { box, largeTopMargin } from '../shared/styles';
 export const HeaderWrapper = styled.div`
-  border: 1px solid #c7c7c7;
-  background: #fff;
-  margin: 30px 0 0 0;
-  box-shadow: 0 0 5px rgba(199, 199, 199, 0.4);
+  ${largeTopMargin}
+  ${box}
 `;
 
 export const Tabs = styled.div`
@@ -30,7 +28,7 @@ export const Tab = styled.div`
   }
 
   &:first-of-type {
-    border-right: 1px solid #c7c7c7;
+    border-right: 1px solid #ededed;
   }
   &.selected {
     color: #000;
