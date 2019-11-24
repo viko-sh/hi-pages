@@ -7,12 +7,12 @@ type Job = {
   suburb_id: number;
   category_id: number;
   contact_name: string;
-  contact_email: string;
-  contact_phone: string;
+  contact_email?: string;
+  contact_phone?: string;
   price: number;
   description: string;
   createdAt: string;
-  updatedAt: string;
+  updatedAt?: string;
   category: {
     id?: number;
     name: string;
