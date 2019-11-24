@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import { InvitedLead } from '../Lead';
+import { InvitedLead, InvitedJob } from '../Lead';
 import axios from 'axios';
 
 type InvitedState = {
   loading: boolean;
-  leads: [];
+  leads: InvitedJob[];
 };
 
-export class Invited extends Component<InvitedState, any> {
+export class Invited extends Component<InvitedState, {}> {
   state = {
     loading: false,
     leads: []
@@ -20,9 +20,15 @@ export class Invited extends Component<InvitedState, any> {
     });
   }
 
-  async acceptLead(id: number) {}
+  acceptLead = (lead: InvitedJob) => async () => {
+    const { id } = lead;
+    await axios.post(`http://localhost:9000/api/jobs/accept-job/${id}`);
+  };
 
-  async declineLead(id: number) {}
+  declineLead = (lead: InvitedJob) => async () => {
+    const { id } = lead;
+    await axios.post(`http://localhost:9000/api/jobs/decline-job/${id}`);
+  };
 
   render() {
     const { leads } = this.state;
@@ -30,7 +36,12 @@ export class Invited extends Component<InvitedState, any> {
       <div>
         {leads.length > 0 &&
           leads.map((lead, i) => (
-            <InvitedLead {...lead} key={`invited-lead-${i}`} />
+            <InvitedLead
+              {...lead}
+              key={`invited-lead-${i}`}
+              onAccept={this.acceptLead(lead)}
+              onDecline={this.declineLead(lead)}
+            />
           ))}
       </div>
     );

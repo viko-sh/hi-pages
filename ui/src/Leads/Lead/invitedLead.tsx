@@ -8,14 +8,15 @@ import { LeadWrapper } from './style';
 
 export const InvitedLead = ({
   categoryName,
-  contactEmail,
   contactName,
   description,
   id,
   postCode,
   price,
   suburbName,
-  createdAt
+  createdAt,
+  onAccept,
+  onDecline
 }: LeadProps) => {
   return (
     <LeadWrapper>
@@ -27,7 +28,7 @@ export const InvitedLead = ({
         categoryName={categoryName}
       />
       <LeadDescription description={description} />
-      <LeadActions price={price} />
+      <LeadActions price={price} onAccept={onAccept} onDecline={onDecline} />
     </LeadWrapper>
   );
 };

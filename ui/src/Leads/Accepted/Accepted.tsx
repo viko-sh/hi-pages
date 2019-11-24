@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
-import { AcceptedLead } from '../Lead';
-
+import { AcceptedLead, AcceptedJob } from '../Lead';
 import axios from 'axios';
 
-export class Accepted extends Component {
+type AcceptedState = {
+  loading: boolean;
+  leads: AcceptedJob[];
+};
+
+export class Accepted extends Component<AcceptedState, {}> {
   state = {
     loading: false,
     leads: []
