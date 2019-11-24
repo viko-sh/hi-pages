@@ -78,6 +78,21 @@ export const JobDetailsWrapper = styled.div`
   }
 `;
 
+export const CustomerInfoWrapper = styled(JobDetailsWrapper)`
+  border-bottom: none;
+  padding-bottom: 0;
+
+  & ul li {
+    color: #ff9e42;
+    font-weight: bold;
+
+    & svg {
+      color: #555555;
+      margin-right: 3px;
+    }
+  }
+`;
+
 export const ActionsWrapper = styled.div`
   display: flex;
   flex-direction: row;

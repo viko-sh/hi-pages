@@ -14,11 +14,12 @@ export const InvitedLead = ({
   id,
   postCode,
   price,
-  suburbName
+  suburbName,
+  createdAt
 }: LeadProps) => {
   return (
     <LeadWrapper>
-      <Customer contactName={contactName} />
+      <Customer contactName={contactName} createdAt={createdAt} />
       <JobDetails
         id={id}
         suburbName={suburbName}

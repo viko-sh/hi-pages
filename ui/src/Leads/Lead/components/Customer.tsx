@@ -1,8 +1,9 @@
 import React from 'react';
+import moment from 'moment';
 import { LeadProps } from '../type';
 import { CustomeWrapper, CustomerIcon, CustomerDetails } from '../style';
 
-export const Customer = ({ contactName }: Partial<LeadProps>) => {
+export const Customer = ({ contactName, createdAt }: Partial<LeadProps>) => {
   return (
     <CustomeWrapper>
       <CustomerIcon>
@@ -11,7 +12,7 @@ export const Customer = ({ contactName }: Partial<LeadProps>) => {
       <CustomerDetails>
         {contactName}
         <br />
-        <span>January 4 @ 2:37 pm</span>
+        <span>{moment(createdAt).format('MMMM D @ h:mm a')}</span>
       </CustomerDetails>
     </CustomeWrapper>
   );
