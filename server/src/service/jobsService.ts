@@ -11,7 +11,8 @@ export default class JobsService {
         'category_id',
         'contact_name',
         'price',
-        'description'
+        'description',
+        'createdAt'
       ],
       where: { status: JobsStatus.NEW },
       include: [
@@ -27,6 +28,7 @@ export default class JobsService {
         }
       ]
     });
+
     return result;
   }
 
@@ -41,7 +43,8 @@ export default class JobsService {
         'contact_phone',
         'contact_email',
         'price',
-        'description'
+        'description',
+        'createdAt'
       ],
       where: { status: JobsStatus.ACCEPTED },
       include: [
@@ -63,7 +66,6 @@ export default class JobsService {
 
   static async changeJobStatus(id: number, status: JobsStatus) {
     const result = await models.job.update({ status }, { where: { id } });
-    console.log('changeJobStatus: ', result);
     return result;
   }
 }
