@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Lead } from '../Lead';
+import { InvitedLead } from '../Lead';
 import axios from 'axios';
 
 type InvitedState = {
@@ -20,12 +20,18 @@ export class Invited extends Component<InvitedState, any> {
     });
   }
 
+  async acceptLead(id: number) {}
+
+  async declineLead(id: number) {}
+
   render() {
     const { leads } = this.state;
     return (
       <div>
         {leads.length > 0 &&
-          leads.map((lead, i) => <Lead {...lead} key={`invited-lead-${i}`} />)}
+          leads.map((lead, i) => (
+            <InvitedLead {...lead} key={`invited-lead-${i}`} />
+          ))}
       </div>
     );
   }

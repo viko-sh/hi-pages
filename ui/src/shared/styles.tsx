@@ -31,6 +31,8 @@ export const mediumTopMargin = css`
 
 export const Button = styled.button`
   width: 120px;
+  cursor: pointer;
+  outline: none;
   text-align: center;
   padding: 13px 0;
   font-size: 14px;
@@ -40,6 +42,10 @@ export const Button = styled.button`
   border-radius: 2px;
   font-weight: bold;
   box-shadow: inset 0px -3px 0px 0px rgba(0, 0, 0, 0.3);
+
+  &:hover {
+    opacity: 0.8;
+  }
 `;
 
 export const ActionButton = styled(Button)`

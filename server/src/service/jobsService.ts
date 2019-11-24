@@ -10,8 +10,6 @@ export default class JobsService {
         'suburb_id',
         'category_id',
         'contact_name',
-        'contact_phone',
-        'contact_email',
         'price',
         'description'
       ],
@@ -34,8 +32,32 @@ export default class JobsService {
 
   static async getAcceptedJobs() {
     const result = await models.job.findAll({
-      where: { status: JobsStatus.ACCEPTED }
+      attributes: [
+        'id',
+        'status',
+        'suburb_id',
+        'category_id',
+        'contact_name',
+        'contact_phone',
+        'contact_email',
+        'price',
+        'description'
+      ],
+      where: { status: JobsStatus.ACCEPTED },
+      include: [
+        {
+          attributes: ['name', 'postcode'],
+          model: models.suburb,
+          as: 'suburb'
+        },
+        {
+          attributes: ['name'],
+          model: models.category,
+          as: 'category'
+        }
+      ]
     });
+
     return result;
   }
 

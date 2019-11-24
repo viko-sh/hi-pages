@@ -1,1 +1,2 @@
-export * from './Lead';
+export * from './invitedLead';
+export * from './acceptedLead';

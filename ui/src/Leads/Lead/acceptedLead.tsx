@@ -2,11 +2,10 @@ import React from 'react';
 import { Customer } from './components/Customer';
 import { JobDetails } from './components/JobDetails';
 import { LeadDescription } from './components/LeadDescription';
-import { LeadActions } from './components/LeadActions';
 import { LeadProps } from './type';
 import { LeadWrapper } from './style';
 
-export const Lead = ({
+export const AcceptedLead = ({
   categoryName,
   contactEmail,
   contactName,
@@ -24,9 +23,9 @@ export const Lead = ({
         suburbName={suburbName}
         postCode={postCode}
         categoryName={categoryName}
+        price={price}
       />
       <LeadDescription description={description} />
-      <LeadActions price={price} />
     </LeadWrapper>
   );
 };

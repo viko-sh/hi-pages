@@ -103,7 +103,12 @@ export const Description = styled.div`
   }
 `;
 
-export const Price = styled.span`
+export const Price = styled.div`
   display: flex;
   align-items: center;
+
+  & span {
+    color: #000;
+    padding-right: 5px;
+  }
 `;
