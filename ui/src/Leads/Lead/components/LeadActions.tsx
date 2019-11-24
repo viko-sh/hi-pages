@@ -10,8 +10,12 @@ export const LeadActions = ({
 }: Partial<LeadProps>) => {
   return (
     <ActionsWrapper>
-      <ActionButton onClick={onAccept}>Accept</ActionButton>
-      <Button onClick={onDecline}>Decline</Button>
+      <ActionButton className="accept" onClick={onAccept}>
+        Accept
+      </ActionButton>
+      <Button className="decline" onClick={onDecline}>
+        Decline
+      </Button>
       <Price>
         <span>${Number(price).toFixed(2)}</span> Lead Invitation
       </Price>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { InvitedLead, InvitedJob } from '../Lead';
-import axios from 'axios';
+import axios from '../../shared/lib/api';
+import { NoResults } from '../../shared/styles';
 
 type InvitedState = {
   loading: boolean;
@@ -14,20 +15,25 @@ export class Invited extends Component<InvitedState, {}> {
   };
 
   async componentDidMount() {
-    const res = await axios.get('http://localhost:9000/api/jobs/invited');
-    this.setState({
-      leads: res.data
-    });
+    try {
+      const leads = await axios.get('/api/jobs/invited');
+      const { data } = leads;
+      if (data && data.length) {
+        this.setState({
+          leads: data
+        });
+      }
+    } catch (err) {}
   }
 
   acceptLead = (lead: InvitedJob) => async () => {
     const { id } = lead;
-    await axios.post(`http://localhost:9000/api/jobs/accept-job/${id}`);
+    await axios.post(`/api/jobs/accept-job/${id}`);
   };
 
   declineLead = (lead: InvitedJob) => async () => {
     const { id } = lead;
-    await axios.post(`http://localhost:9000/api/jobs/decline-job/${id}`);
+    await axios.post(`/api/jobs/decline-job/${id}`);
   };
 
   render() {
@@ -43,6 +49,12 @@ export class Invited extends Component<InvitedState, {}> {
               onDecline={this.declineLead(lead)}
             />
           ))}
+        {leads.length === 0 && (
+          <NoResults id="no-results">
+            Hi, we don't have any jobs for you yet. We will notify you once we
+            have something.
+          </NoResults>
+        )}
       </div>
     );
   }

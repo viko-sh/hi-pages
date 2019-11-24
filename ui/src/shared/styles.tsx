@@ -52,3 +52,14 @@ export const ActionButton = styled(Button)`
   background: #ff7a12;
   color: #fff;
 `;
+
+export const NoResults = styled.div`
+  ${box}
+  ${mediumTopMargin}
+  padding: 30px;
+
+  a {
+    color: #ff7a12;
+    text-decoration: none;
+  }
+`;

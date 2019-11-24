@@ -1,7 +1,9 @@
 # dependencies
 /server/node_modules
 /server/dist
+/server/coverage
 /ui/node_modules
+/ui/coverage
 
 /.pnp
 .pnp.js

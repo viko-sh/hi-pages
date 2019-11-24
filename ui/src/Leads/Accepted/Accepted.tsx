@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { AcceptedLead, AcceptedJob } from '../Lead';
-import axios from 'axios';
+import { NoResults } from '../../shared/styles';
+import axios from '../../shared/lib/api';
+import { Link } from 'react-router-dom';
 
 type AcceptedState = {
   loading: boolean;
@@ -14,10 +16,15 @@ export class Accepted extends Component<AcceptedState, {}> {
   };
 
   async componentDidMount() {
-    const res = await axios.get('http://localhost:9000/api/jobs/accepted');
-    this.setState({
-      leads: res.data
-    });
+    try {
+      const leads = await axios.get('/api/jobs/accepted');
+      const { data } = leads;
+      if (data && data.length) {
+        this.setState({
+          leads: data
+        });
+      }
+    } catch (err) {}
   }
 
   render() {
@@ -28,6 +35,12 @@ export class Accepted extends Component<AcceptedState, {}> {
           leads.map((lead, i) => (
             <AcceptedLead {...lead} key={`invited-lead-${i}`} />
           ))}
+        {leads.length === 0 && (
+          <NoResults id="no-results">
+            Hi, you didn't accept any Leads yet, click <Link to="/">here</Link>{' '}
+            to view whats availible
+          </NoResults>
+        )}
       </div>
     );
   }

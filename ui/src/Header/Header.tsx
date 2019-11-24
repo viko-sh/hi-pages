@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { HeaderWrapper, Tabs, Tab } from './style';
 import { Link, withRouter } from 'react-router-dom';
 
-class HeaderInner extends Component<any> {
+export class HeaderInner extends Component<any> {
   render() {
     const {
       location: { pathname }
