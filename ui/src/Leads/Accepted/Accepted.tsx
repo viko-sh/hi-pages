@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import { AcceptedLead, AcceptedJob } from '../Lead';
-import { NoResults } from '../../shared/styles';
+import {
+  NoResults,
+  LeadsContainer,
+  ErrorMessage,
+  Loader
+} from '../../shared/styles';
 import axios from '../../shared/lib/api';
 import { Link } from 'react-router-dom';
 
@@ -12,6 +17,7 @@ type AcceptedState = {
 export class Accepted extends Component<AcceptedState, {}> {
   state = {
     loading: false,
+    error: false,
     leads: []
   };
 
@@ -28,10 +34,17 @@ export class Accepted extends Component<AcceptedState, {}> {
   }
 
   render() {
-    const { leads } = this.state;
+    const { leads, loading, error } = this.state;
     return (
-      <div>
-        {leads.length > 0 &&
+      <LeadsContainer>
+        {error && (
+          <ErrorMessage>
+            Opp... Something is wrong, and we are on it.
+          </ErrorMessage>
+        )}
+        {loading && <Loader />}
+        {!error &&
+          leads.length > 0 &&
           leads.map((lead, i) => (
             <AcceptedLead {...lead} key={`invited-lead-${i}`} />
           ))}
@@ -41,7 +54,7 @@ export class Accepted extends Component<AcceptedState, {}> {
             to view whats availible
           </NoResults>
         )}
-      </div>
+      </LeadsContainer>
     );
   }
 }

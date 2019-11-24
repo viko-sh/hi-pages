@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import loader from './assets/loader.gif';
 
 export const Container = styled.div`
   width: 1024px;
@@ -7,6 +8,7 @@ export const Container = styled.div`
 
 export const LeadsContainer = styled.div`
   margin-bottom: 50px;
+  position: relative;
 `;
 
 export const box = css`
@@ -66,4 +68,25 @@ export const NoResults = styled.div`
     color: #ff7a12;
     text-decoration: none;
   }
+`;
+
+export const ErrorMessage = styled.div`
+  ${box}
+  ${mediumTopMargin}
+  padding: 30px;
+
+  a {
+    color: #ff7a12;
+    text-decoration: none;
+  }
+`;
+
+export const Loader = styled.div`
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #000 url(${loader}) center 60px no-repeat;
+  opacity: 0.3;
 `;
