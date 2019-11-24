@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { InvitedLead, InvitedJob } from '../Lead';
 import axios from '../../shared/lib/api';
-import { NoResults } from '../../shared/styles';
+import { NoResults, LeadsContainer } from '../../shared/styles';
 
 type InvitedState = {
   loading: boolean;
@@ -39,7 +39,7 @@ export class Invited extends Component<InvitedState, {}> {
   render() {
     const { leads } = this.state;
     return (
-      <div>
+      <LeadsContainer>
         {leads.length > 0 &&
           leads.map((lead, i) => (
             <InvitedLead
@@ -55,7 +55,7 @@ export class Invited extends Component<InvitedState, {}> {
             have something.
           </NoResults>
         )}
-      </div>
+      </LeadsContainer>
     );
   }
 }

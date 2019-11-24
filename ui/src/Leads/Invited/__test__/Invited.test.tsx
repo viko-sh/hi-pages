@@ -77,8 +77,7 @@ describe('Accepted component ', () => {
     const spy = jest
       .spyOn(axios, 'get')
       .mockReturnValue(Promise.resolve(returnValues));
-
-    expect(wrapper.find('div')).toHaveLength(1);
+    expect(wrapper.find('#no-results')).toHaveLength(1);
     spy.mockRestore();
   });
 

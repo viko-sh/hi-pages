@@ -5,6 +5,10 @@ export const Container = styled.div`
   margin: 0 auto;
 `;
 
+export const LeadsContainer = styled.div`
+  margin-bottom: 50px;
+`;
+
 export const box = css`
   box-shadow: 0 0 5px rgba(199, 199, 199, 0.4);
   border: 1px solid #c7c7c7;
