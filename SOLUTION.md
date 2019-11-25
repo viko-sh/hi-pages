@@ -64,7 +64,7 @@ Most of the styling developed by using `styled-component` - with this library we
 Redux, and Redux-saga to manage application state and API calls. 
 
 ### Diagram - Components tree
-![Diagram Tab](/client_diagram.png.png?raw=true "Diagram Tab")
+![Diagram Tab](/client_diagram.png?raw=true "Diagram Tab")
 
 ### `Available Scripts`
 - `test`: run test,
