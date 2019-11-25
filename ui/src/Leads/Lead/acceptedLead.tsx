@@ -12,6 +12,7 @@ export const AcceptedLead = ({
   contactName,
   contactPhone,
   description,
+  createdAt,
   id,
   postCode,
   price,
@@ -19,7 +20,7 @@ export const AcceptedLead = ({
 }: Partial<LeadProps>) => {
   return (
     <LeadWrapper>
-      <Customer contactName={contactName} />
+      <Customer contactName={contactName} createdAt={createdAt} />
       <JobDetails
         id={id}
         suburbName={suburbName}

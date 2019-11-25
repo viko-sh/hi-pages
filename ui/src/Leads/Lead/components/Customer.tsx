@@ -4,6 +4,7 @@ import { LeadProps } from '../type';
 import { CustomeWrapper, CustomerIcon, CustomerDetails } from '../style';
 
 export const Customer = ({ contactName, createdAt }: Partial<LeadProps>) => {
+  console.log('createdAt: ', createdAt);
   return (
     <CustomeWrapper>
       <CustomerIcon>
