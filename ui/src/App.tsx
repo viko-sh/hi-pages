@@ -4,14 +4,15 @@ import { Accepted } from './Leads/Accepted';
 import { Invited } from './Leads/Invited';
 import { Header } from './Header';
 import { Container } from './shared/styles';
+import { PATH } from './shared/lib/raoutes';
 
 const App: React.FC = () => {
   return (
     <BrowserRouter>
       <Container>
         <Header />
-        <Route path="/" exact={true} component={Invited} />
-        <Route path="/accepted" component={Accepted} />
+        <Route path={PATH.INVITED} exact={true} component={Invited} />
+        <Route path={PATH.ACCEPTED} component={Accepted} />
       </Container>
     </BrowserRouter>
   );

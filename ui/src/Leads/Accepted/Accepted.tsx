@@ -9,6 +9,7 @@ import {
 } from '../../shared/styles';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { PATH } from '../../shared/lib/raoutes';
 
 type AcceptedProps = {
   leads: AcceptedLeadList;
@@ -41,8 +42,8 @@ export class AcceptedInner extends Component<AcceptedProps> {
           ))}
         {leads.length === 0 && !error && (
           <NoResults id="no-results">
-            Hi, you didn't accept any Leads yet, click <Link to="/">here</Link>{' '}
-            to view whats availible
+            Hi, you didn't accept any Leads yet, click{' '}
+            <Link to={PATH.INVITED}>here</Link> to view whats availible
           </NoResults>
         )}
       </LeadsContainer>
