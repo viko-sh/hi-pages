@@ -81,18 +81,4 @@ export class JobFactory {
     this.postCode = postCode;
   }
 
-  // toResult() {
-  //   return {
-  //     id: this.id,
-  //     contactName: this.contactName,
-  //     contactEmail: this.contactEmail,
-  //     contactPhone: this.contactPhone,
-  //     price: this.price,
-  //     description: this.description,
-  //     categoryName: this.categoryName,
-  //     suburbName: this.suburbName,
-  //     postCode: this.postCode,
-  //     createdAt: this.createdAt
-  //   };
-  // }
 }
