@@ -1,9 +1,10 @@
 import JobsService from '../jobsService';
 import models from '../../models';
 import { JobsStatus } from '../../constants';
+
 const mockJobA = {
   id: 1,
-  contactName: 'Darth',
+  contactName: 'Darth Doe',
   price: 30,
   description: 'text',
   categoryName: 'Electrical',
@@ -11,9 +12,10 @@ const mockJobA = {
   postCode: '2026',
   createdAt: '2019-11-21T18:57:43.000Z'
 };
+
 const mockJobB = {
   id: 2,
-  contactName: 'Lando',
+  contactName: 'Lando Doe',
   price: 62,
   description: 'text',
   categoryName: 'Building',
@@ -22,7 +24,21 @@ const mockJobB = {
   createdAt: '2019-11-21T18:57:43.000Z'
 };
 
-const mockData = [mockJobA, mockJobB];
+const a = {
+  ...mockJobA,
+  get: () => {
+    return mockJobA;
+  }
+};
+
+const b = {
+  ...mockJobB,
+  get: () => {
+    return mockJobB;
+  }
+};
+
+const mockData = [a, b];
 
 const mockJobModel = {
   // tslint:disable-next-line:no-empty
@@ -36,7 +52,7 @@ mockJobModel.update = () => {
 };
 
 mockJobModel.findAll = () => {
-  return Promise.resolve({ rows: mockData });
+  return Promise.resolve(mockData);
 };
 
 models['job'] = mockJobModel;
@@ -44,12 +60,13 @@ models['job'] = mockJobModel;
 describe('Jobs Service ', () => {
   it('List all active jobs - should get jobs array', async () => {
     const result = await JobsService.getInvitedJobs();
-    expect(result.rows.length).toEqual(2);
+
+    expect(result.length).toEqual(2);
   });
 
   it('List all accepted jobs - should get jobs array', async () => {
     const result = await JobsService.getAcceptedJobs();
-    expect(result.rows.length).toEqual(2);
+    expect(result.length).toEqual(2);
   });
 
   it('Update change status - should return array', async () => {

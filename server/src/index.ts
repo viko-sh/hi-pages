@@ -1,7 +1,7 @@
 import * as express from 'express';
+import * as bodyParser from 'body-parser';
+import * as cors from 'cors';
 import jobRoutes from './routes/api/jobsRoutes';
-const bodyParser = require('body-parser');
-const cors = require('cors');
 const server = express();
 // const port = 8080;
 const port = 9000;

@@ -1,5 +1,6 @@
-import { JobFactory } from '../jobFactory';
 import { JobsStatus } from '../../constants';
+import { InvitedJobFactory } from './../invitedJobFactory';
+import { AcceptedJobFactory } from './../acceptedJobFactory';
 
 describe('Jobs Factory', () => {
   it('JobsFactory toJason method should return invited shape', () => {
@@ -29,7 +30,7 @@ describe('Jobs Factory', () => {
       suburbName: 'Newtown'
     };
 
-    const job = new JobFactory(data);
+    const job = new InvitedJobFactory(data);
     expect(result).toEqual(job.toResult());
   });
 
@@ -60,7 +61,7 @@ describe('Jobs Factory', () => {
       suburbName: 'Newtown'
     };
 
-    const job = new JobFactory(data);
+    const job = new AcceptedJobFactory(data);
     expect(result).toEqual(job.toResult());
   });
 });

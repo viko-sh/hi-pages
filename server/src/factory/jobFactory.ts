@@ -1,7 +1,7 @@
 import { JobsStatus } from '../constants';
 import { Factory } from './factory';
 
-type Job = {
+export type Job = {
   id: number;
   status: JobsStatus;
   suburb_id: number;
@@ -25,21 +25,21 @@ type Job = {
   };
 };
 
-export class JobFactory implements Factory {
-  private id: number;
-  private status: JobsStatus;
-  private suburbId: number;
-  private categoryId: number;
-  private categoryName: string;
-  private contactName: string;
-  private contactEmail: string;
-  private contactPhone: string;
-  private price: number;
-  private description: string;
-  private createdAt: string;
-  private updatedAt: string;
-  private suburbName: string;
-  private postCode: number;
+export class JobFactory {
+  protected id: number;
+  protected status: JobsStatus;
+  protected suburbId: number;
+  protected categoryId: number;
+  protected categoryName: string;
+  protected contactName: string;
+  protected contactEmail: string;
+  protected contactPhone: string;
+  protected price: number;
+  protected description: string;
+  protected createdAt: string;
+  protected updatedAt: string;
+  protected suburbName: string;
+  protected postCode: number;
 
   constructor(data: Job) {
     const {
@@ -65,18 +65,11 @@ export class JobFactory implements Factory {
     // get the postcode
     const postCode = suburb && 'postcode' in suburb ? suburb.postcode : 0;
 
-    let contactName = contact_name;
-    // contact name should be formated based on the job status
-    if (status !== JobsStatus.ACCEPTED) {
-      const [firstName] = contact_name.split(' '); // split the full name and get the first name
-      contactName = firstName;
-    }
-
     this.id = id;
     this.status = status;
     this.suburbId = suburb_id;
     this.categoryId = category_id;
-    this.contactName = contactName;
+    this.contactName = contact_name;
     this.contactEmail = contact_email;
     this.contactPhone = contact_phone;
     this.price = price;
@@ -88,18 +81,18 @@ export class JobFactory implements Factory {
     this.postCode = postCode;
   }
 
-  toResult() {
-    return {
-      id: this.id,
-      contactName: this.contactName,
-      contactEmail: this.contactEmail,
-      contactPhone: this.contactPhone,
-      price: this.price,
-      description: this.description,
-      categoryName: this.categoryName,
-      suburbName: this.suburbName,
-      postCode: this.postCode,
-      createdAt: this.createdAt
-    };
-  }
+  // toResult() {
+  //   return {
+  //     id: this.id,
+  //     contactName: this.contactName,
+  //     contactEmail: this.contactEmail,
+  //     contactPhone: this.contactPhone,
+  //     price: this.price,
+  //     description: this.description,
+  //     categoryName: this.categoryName,
+  //     suburbName: this.suburbName,
+  //     postCode: this.postCode,
+  //     createdAt: this.createdAt
+  //   };
+  // }
 }

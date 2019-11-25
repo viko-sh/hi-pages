@@ -1,5 +1,6 @@
 import models from '../models';
 import { JobsStatus } from '../constants';
+import { InvitedJobFactory, AcceptedJobFactory } from '../factory';
 
 export default class JobsService {
   static async getInvitedJobs() {
@@ -29,7 +30,11 @@ export default class JobsService {
           }
         ]
       });
-      return result;
+      const leads = result.map(job =>
+        new InvitedJobFactory(job.get({ plain: true })).toResult()
+      );
+
+      return leads;
     } catch (error) {
       throw new Error(error.message);
     }
@@ -65,7 +70,11 @@ export default class JobsService {
         ]
       });
 
-      return result;
+      const leads = result.map(job =>
+        new AcceptedJobFactory(job.get({ plain: true })).toResult()
+      );
+
+      return leads;
     } catch (error) {
       throw new Error(error.message);
     }

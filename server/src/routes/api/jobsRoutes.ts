@@ -8,12 +8,7 @@ const router = express.Router();
 router.get('/invited', async (req: Request, res: Response) => {
   try {
     const jobs = await JobsService.getInvitedJobs();
-
-    const result = jobs.map(job =>
-      new JobFactory(job.get({ plain: true })).toResult()
-    );
-
-    res.json(result);
+    res.json(jobs);
   } catch (error) {
     res.status(500).send(error.message);
   }
@@ -21,11 +16,7 @@ router.get('/invited', async (req: Request, res: Response) => {
 
 router.get('/accepted', async (req: Request, res: Response) => {
   try {
-    const jobs = await JobsService.getAcceptedJobs();
-
-    const result = jobs.map(job =>
-      new JobFactory(job.get({ plain: true })).toResult()
-    );
+    const result = await JobsService.getAcceptedJobs();
 
     res.json(result);
   } catch (error) {
