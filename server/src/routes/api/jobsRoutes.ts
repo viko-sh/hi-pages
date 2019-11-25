@@ -28,6 +28,13 @@ router.post('/accept-job/:jobId', async (req: Request, res: Response) => {
   try {
     const { jobId } = req.params;
 
+    // check if the job still available
+    const isJobAvailable = await JobsService.testJobAvailability(jobId);
+
+    if (!isJobAvailable) {
+      throw new Error('Sorry, the job in no longer available');
+    }
+
     const result = await JobsService.changeJobStatus(
       jobId,
       JobsStatus.ACCEPTED

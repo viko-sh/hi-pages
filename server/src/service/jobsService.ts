@@ -80,6 +80,13 @@ export default class JobsService {
     }
   }
 
+  static async testJobAvailability(id: number) {
+    const result = await models.job.findOne({
+      where: { id, status: JobsStatus.NEW }
+    });
+    return result instanceof models.job;
+  }
+
   static async changeJobStatus(id: number, status: JobsStatus) {
     const result = await models.job.update({ status }, { where: { id } });
     return result;
