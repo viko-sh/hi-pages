@@ -1,40 +1,32 @@
 import React, { Component } from 'react';
-import { AcceptedLead, AcceptedJob } from '../Lead';
+import { AcceptedLead, AcceptedLeadList } from '../Lead';
+import { getAccepted } from '../state';
+
 import {
   NoResults,
   LeadsContainer,
   ErrorMessage,
   Loader
 } from '../../shared/styles';
-import axios from '../../shared/lib/api';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-type AcceptedState = {
-  loading: boolean;
-  leads: AcceptedJob[];
+type AcceptedProps = {
+  leads: AcceptedLeadList;
+  isLoading: boolean;
+  isLoaded: boolean;
+  error: boolean;
+  getAccepted: () => void;
 };
 
-export class Accepted extends Component<AcceptedState, {}> {
-  state = {
-    loading: false,
-    error: false,
-    leads: []
-  };
-
-  async componentDidMount() {
-    try {
-      const leads = await axios.get('/api/jobs/accepted');
-      const { data } = leads;
-      if (data && data.length) {
-        this.setState({
-          leads: data
-        });
-      }
-    } catch (err) {}
+export class AcceptedInner extends Component<AcceptedProps> {
+  componentDidMount() {
+    const { getAccepted } = this.props;
+    getAccepted();
   }
 
   render() {
-    const { leads, loading, error } = this.state;
+    const { leads, isLoading, error } = this.props;
     return (
       <LeadsContainer>
         {error && (
@@ -42,7 +34,7 @@ export class Accepted extends Component<AcceptedState, {}> {
             Opp... Something is wrong, and we are on it.
           </ErrorMessage>
         )}
-        {loading && <Loader />}
+        {isLoading && <Loader />}
         {!error &&
           leads.length > 0 &&
           leads.map((lead, i) => (
@@ -58,3 +50,19 @@ export class Accepted extends Component<AcceptedState, {}> {
     );
   }
 }
+
+const mapStateToProps = (state: any) => ({
+  leads: state.leads.accepted,
+  error: state.leads.error,
+  isLoading: state.leads.isLoading,
+  isLoaded: state.leads.isLoaded
+});
+
+const mapDispatchToProps = {
+  getAccepted
+};
+
+export const Accepted = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AcceptedInner);

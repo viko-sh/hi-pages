@@ -16,7 +16,7 @@ export const AcceptedLead = ({
   postCode,
   price,
   suburbName
-}: LeadProps) => {
+}: Partial<LeadProps>) => {
   return (
     <LeadWrapper>
       <Customer contactName={contactName} />

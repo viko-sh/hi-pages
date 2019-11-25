@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { InvitedLead, InvitedJob } from '../Lead';
-import axios from '../../shared/lib/api';
+import { InvitedLeadList, InvitedJob, InvitedLead } from '../Lead';
+import { connect } from 'react-redux';
+import { getInvited, acceptLead, declineLead } from '../state';
 import {
   NoResults,
   LeadsContainer,
@@ -8,94 +9,34 @@ import {
   ErrorMessage
 } from '../../shared/styles';
 
-type InvitedState = {
-  loading: boolean;
-  leads: InvitedJob[];
+type InvitedProps = {
+  leads: InvitedLeadList;
+  isLoading: boolean;
+  isLoaded: boolean;
+  error: boolean;
+  getInvited: () => void;
+  acceptLead: (id: number) => void;
+  declineLead: (id: number) => void;
 };
 
-export class Invited extends Component<InvitedState, {}> {
-  state = {
-    loading: false,
-    error: false,
-    leads: []
-  };
-
-  async componentDidMount() {
-    try {
-      this.setState({
-        loading: true
-      });
-      const result = await axios.get('/api/jobs/invited');
-      const { data } = result;
-      if (data && data.length) {
-        this.setState({
-          leads: data,
-          loading: false
-        });
-      }
-    } catch (err) {
-      this.setState({
-        loading: false,
-        error: true
-      });
-    }
+class InvitedInner extends Component<InvitedProps> {
+  componentDidMount() {
+    const { getInvited } = this.props;
+    getInvited();
   }
 
   acceptLead = (lead: InvitedJob) => async () => {
-    // show the loader
-    this.setState({
-      loading: true
-    });
-    const { id } = lead;
-
-    // update the server
-    try {
-      await axios.post(`/api/jobs/accept-job/${id}`);
-    } catch (error) {
-      this.setState({
-        loading: false,
-        error: true
-      });
-    }
-
-    // we need to update the list
-    const leads = [...this.state.leads];
-    const filtered = leads.filter((l: InvitedJob) => l.id !== id);
-
-    this.setState({
-      loading: false,
-      leads: filtered
-    });
+    const { acceptLead } = this.props;
+    acceptLead(lead.id);
   };
 
   declineLead = (lead: InvitedJob) => async () => {
-    // show the loader
-    this.setState({
-      loading: true
-    });
-    const { id } = lead;
-
-    try {
-      // update the server
-      await axios.post(`/api/jobs/decline-job/${id}`);
-    } catch (error) {
-      this.setState({
-        loading: false,
-        error: true
-      });
-    }
-
-    const leads = [...this.state.leads];
-    const filtered = leads.filter((l: InvitedJob) => l.id !== id);
-
-    this.setState({
-      loading: false,
-      leads: filtered
-    });
+    const { declineLead } = this.props;
+    declineLead(lead.id);
   };
 
   render() {
-    const { leads, loading, error } = this.state;
+    const { leads, error, isLoading } = this.props;
     return (
       <LeadsContainer>
         {error && (
@@ -103,9 +44,8 @@ export class Invited extends Component<InvitedState, {}> {
             Opp... Something is wrong, and we are on it.
           </ErrorMessage>
         )}
-        {loading && <Loader />}
-        {!error &&
-          leads.length > 0 &&
+        {isLoading && <Loader />}
+        {leads.length > 0 &&
           leads.map((lead, i) => (
             <InvitedLead
               {...lead}
@@ -124,3 +64,21 @@ export class Invited extends Component<InvitedState, {}> {
     );
   }
 }
+
+const mapStateToProps = (state: any) => ({
+  leads: state.leads.invited,
+  error: state.leads.error,
+  isLoading: state.leads.isLoading,
+  isLoaded: state.leads.isLoaded
+});
+
+const mapDispatchToProps = {
+  getInvited,
+  acceptLead,
+  declineLead
+};
+
+export const Invited = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(InvitedInner);

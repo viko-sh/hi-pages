@@ -1,14 +1,14 @@
 export type LeadProps = {
   categoryName: string;
   contactEmail?: string;
-  contactPhone?: string;
-  contactName: string;
+  contactPhone?: string | number;
+  contactName?: string;
   description: string;
   id: number;
-  postCode: number;
+  postCode: number | string;
   price: number;
   suburbName: string;
-  createdAt: string;
+  createdAt?: string;
   onAccept: () => {};
   onDecline: () => {};
 };
@@ -28,3 +28,6 @@ export type AcceptedJob = {
   contactEmail: string;
   contactPhone: string;
 } & InvitedJob;
+
+export type InvitedLeadList = InvitedJob[];
+export type AcceptedLeadList = AcceptedJob[];
