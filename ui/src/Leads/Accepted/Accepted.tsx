@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { AcceptedLead, AcceptedLeadList } from '../Lead';
 import { getAccepted } from '../state';
-
 import {
   NoResults,
   LeadsContainer,
@@ -40,7 +39,7 @@ export class AcceptedInner extends Component<AcceptedProps> {
           leads.map((lead, i) => (
             <AcceptedLead {...lead} key={`invited-lead-${i}`} />
           ))}
-        {leads.length === 0 && (
+        {leads.length === 0 && !error && (
           <NoResults id="no-results">
             Hi, you didn't accept any Leads yet, click <Link to="/">here</Link>{' '}
             to view whats availible

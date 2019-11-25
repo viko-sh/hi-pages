@@ -19,7 +19,7 @@ type InvitedProps = {
   declineLead: (id: number) => void;
 };
 
-class InvitedInner extends Component<InvitedProps> {
+export class InvitedInner extends Component<InvitedProps> {
   componentDidMount() {
     const { getInvited } = this.props;
     getInvited();
@@ -54,7 +54,7 @@ class InvitedInner extends Component<InvitedProps> {
               onDecline={this.declineLead(lead)}
             />
           ))}
-        {leads.length === 0 && (
+        {leads.length === 0 && !error && (
           <NoResults id="no-results">
             Hi, we don't have any jobs for you yet. We will notify you once we
             have something.

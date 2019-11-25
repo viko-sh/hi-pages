@@ -23,9 +23,6 @@ export const getAcceptedSaga = function*(action: any): SagaIterator {
   }
 };
 
-/**
- * Get invited leads
- */
 export const getInvitedSaga = function*(action: any): SagaIterator {
   try {
     const data = yield call(api.getInvited as any, action.payload);
@@ -53,9 +50,6 @@ export const declineLeadSaga = function*(action: any): SagaIterator {
   }
 };
 
-/**
- * Leads Sagas
- */
 export default function* root() {
   yield all([
     takeLatest(getInvited, getInvitedSaga),
