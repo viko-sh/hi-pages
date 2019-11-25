@@ -1,21 +1,38 @@
 # Solution description 
 
 Hi there, 
-I have enjoyed coding this,
-hope you will enjoy reading this.
+I have enjoyed coding the solution,
+hope you will enjoy reading the documentation.
 
-Thanks.
+Thank you
+
+## How to start
+If you encounter any problems with the docker connection,
+you can do the following
+
+- from the root of your application, run `docker-compose up -d`
+- run docker ps, you should get three containers running.
+- run docker stop hi-pages_server_1 
+- run docker stop hi-pages_ui_1
+- we now running only the database container
+- from the root of your application, `cd server`
+  - `npm install`
+  - `npm start` -  it will start your node server on port 8080, http://localhost:8080
+- from the root of your application, open second terminal, run `cd ui` and `yarn start`
+  - `cd ui`
+  - `yarn`
+  - `yarn start` - you now should have the front-end running on http://localhost:3000
 
 
 ## Server
 
 ### `Express`
-I have used the Express framework to develop the server-side of the application. It came as part of the boilerplate. Still, I would probably use Express as my first choice for this solution as well, as it's pretty fast do develop a lightweight REST API services with Express, and it comes with enough tool to focus on the application business logic.
+I have used the Express framework to develop the server-side of the application. It came as part of the boilerplate. Still, I would probably use Express as my first choice for this solution as well, as it's pretty fast do develop a lightweight REST API services with Express, and it comes with enough tools so we can focus on the application business logic.
 
 ### `Sequelize` 
-Using ORM for this size application might look too much, but applications can grow very fast, more and more developers can work on the same code. 
-Sequelize ORM, like any other ORM, can help with migrations, structure, and security. Speed up the development of simple, repetitive queries. 
-We can also use direct SQL for more complex queries.
+Using ORM for this application might look too much, but applications can grow very fast, more and more developers will share the same code. 
+Sequelize ORM, like any other ORM, can help with migrations, structure, and security. Speed up the development of simple, repetitive queries, 
+we can also use direct SQL for more complex queries.
 
 ### `Project Structure`
 There many ways to structure a server application and all have their pros and cons.
@@ -56,6 +73,8 @@ This is were we can create a contract how each instance will be represented outs
 - `More unit tests` - to cover the route handlers
 - `Error handler middleware` - for better error handling
 
+---
+
 ## Client
 
 ### General
@@ -74,6 +93,11 @@ Redux, and Redux-saga to manage application state and API calls.
 - `Data lazy loading` - currently, every time we click on a tab, we bring the data from the server. 
 - `More unit tests` - to cover sagas and interactions
 - `E2E test` with `Cypress JS`
-- `deployment scripts`
+- `Deployment scripts` - we can user pipilines with gitLab, bitbucker and similar to run a pipeline
+   - build
+   - lint
+   - unit test
+   - E2E test
+   - deploy
 
 
