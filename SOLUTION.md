@@ -92,6 +92,7 @@ Redux, and Redux-saga to manage application state and API calls.
 ### `What else I would do given more time`
 - `Data lazy loading` - currently, every time we click on a tab, we bring the data from the server. 
 - `More unit tests` - to cover sagas and interactions
+- `Mobile` - making the UI mobile friendly
 - `E2E test` with `Cypress JS`
 - `Deployment scripts` - we can user pipilines with gitLab, bitbucker and similar to run a pipeline
    - build
