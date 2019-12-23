@@ -67,12 +67,6 @@ This is were we can create a contract how each instance will be represented outs
 - `test`: run unit tests
 - `test-ci`: will run the unit tests and generate coverage report, the report will be generated to `./coverage`    
 
-
-### `What else I would do given more time`
-- `Logs` - adding loging service for debugin, tracing
-- `More unit tests` - to cover the route handlers
-- `Error handler middleware` - for better error handling
-
 ---
 
 ## Client
@@ -88,17 +82,4 @@ Redux, and Redux-saga to manage application state and API calls.
 ### `Available Scripts`
 - `test`: run test,
 - `test-ci`: run test and generate coverage reports,
-
-### `What else I would do given more time`
-- `Data lazy loading` - currently, every time we click on a tab, we bring the data from the server. 
-- `More unit tests` - to cover sagas and interactions
-- `Mobile` - making the UI mobile friendly
-- `E2E test` with `Cypress JS`
-- `Deployment scripts` - we can user pipilines with gitLab, bitbucker and similar to run a pipeline
-   - build
-   - lint
-   - unit test
-   - E2E test
-   - deploy
-
 
